@@ -13,6 +13,8 @@ public class ParallaxCamera : MonoBehaviour
     void Start()
     {
         oldPosition = transform.position.x; // 시작 시 oldPosition = 현재 x 좌표
+
+        DontDestroyOnLoad(this.gameObject);
     }
     
     void FixedUpdate()
