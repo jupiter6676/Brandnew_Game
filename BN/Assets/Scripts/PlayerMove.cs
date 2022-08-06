@@ -18,6 +18,12 @@ public class PlayerMove : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        // 씬 이동 시 플레이어 오브젝트 파괴 방지
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Update()
     {
         /* Jump */
