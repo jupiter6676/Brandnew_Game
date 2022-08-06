@@ -11,6 +11,10 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
 
+    // 현재 플레이어가 있는 맵 이름
+    // transferMap 스크립트에 있는, transferMapName 변수의 값을 저장
+    public string currentMapName;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
