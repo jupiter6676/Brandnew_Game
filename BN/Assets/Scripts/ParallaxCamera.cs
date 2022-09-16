@@ -4,6 +4,7 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 
+/* CameraController.cs로 대체 예정 */
 public class ParallaxCamera : MonoBehaviour
 {
     public delegate void ParallaxCameraDelegate(float deltaMovement);

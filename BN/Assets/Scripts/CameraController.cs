@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CamerController : MonoBehaviour {
+public class CameraController : MonoBehaviour {
     public float speed;
     public float clampLeft;
     public float clampRight;
@@ -12,8 +12,9 @@ public class CamerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         cameraX = transform.position.x;
-		
-	}
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 	
 	// Update is called once per frame
 	void Update () {
