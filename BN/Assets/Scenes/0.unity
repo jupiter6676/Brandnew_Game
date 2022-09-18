@@ -248,7 +248,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -457,7 +457,7 @@ MonoBehaviour:
     FieldOfView: 20
     OrthographicSize: 3.3
     NearClipPlane: 0.3
-    FarClipPlane: 50
+    FarClipPlane: 19
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -1943,8 +1943,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  clampLeft: -37.26
+  clampLeft: -5
   clampRight: 6.09
+  clampUp: 0
+  bound: {fileID: 103121539}
 --- !u!1 &1966107079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9216054104109010625, guid: 66d4a017e1292284dbdcb7afe80e224b, type: 3}
       propertyPath: far clip plane
-      value: 50
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 9216054104109010626, guid: 66d4a017e1292284dbdcb7afe80e224b, type: 3}
       propertyPath: m_Name
