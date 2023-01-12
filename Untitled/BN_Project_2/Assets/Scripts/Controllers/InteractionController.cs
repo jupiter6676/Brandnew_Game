@@ -14,10 +14,31 @@ public class InteractionController : MonoBehaviour
     bool isInteractive = false; // 상호작용 가능 오브젝트에 접촉하는 최초의 순간에 true로 변경
     bool isMovable = false; // 이동 상호작용 가능 오브젝트에 접촉하는 최초의 순간에 true로 변경
 
+    public static bool clickedInteractive = false;    // 상호작용 가능 오브젝트를 클릭했는지
+
+    DialogueManager dm;
+
+    [SerializeField] GameObject go_ui_cursor;  // UI_Cursor
+    [SerializeField] GameObject go_ui_status;  // (임시) 상태창
+
+
+    // 대사창이 나오면, UI 숨기기 (DialogueManager.cs에서 호출)
+    public void HideUI()
+    {
+        go_ui_cursor.SetActive(false);
+        go_ui_status.SetActive(false);
+    }
+
+
+    void Start()
+    {
+        dm = FindObjectOfType<DialogueManager>();
+    }
 
     void Update()
     {
         CheckObject();
+        LeftClick();
     }
 
     void CheckObject()
@@ -90,5 +111,29 @@ public class InteractionController : MonoBehaviour
             go_normalCursor.SetActive(true);
             go_movableCursor.SetActive(false);
         }
+    }
+
+    // 상호작용 가능 오브젝트를 좌클릭했을 때, Interact 함수 호출
+    void LeftClick()
+    {
+        // clickedInteractive 값이 false일 때만 오브젝트를 클릭 가능
+        if (!clickedInteractive)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (isInteractive)
+                {
+                    Interact();
+                }
+            }
+        }
+    }
+
+    // 상호작용 가능 오브젝트를 좌클릭했을 때, 대사창을 보여줌.
+    void Interact()
+    {
+        clickedInteractive = true;
+
+        dm.ShowDialogue();
     }
 }
