@@ -11,6 +11,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TMP_Text txt_dialogue;
     [SerializeField] TMP_Text txt_name;
 
+    Dialogue[] dialogues;
+
     bool isDialogue = false;    // 현재 대화중인지
 
     InteractionController ic;
@@ -22,10 +24,12 @@ public class DialogueManager : MonoBehaviour
     }
 
     // 다른 곳에서 호출 가능하도록, public으로 생성
-    public void ShowDialogue()
+    public void ShowDialogue(Dialogue[] p_dialogues)
     {
         txt_dialogue.text = "";
         txt_name.text = "";
+
+        dialogues = p_dialogues;
 
         ic.HideUI();    // 커서, 상태창 숨기기
         SettingUI(true);    // 대사창, 이름창 보이기

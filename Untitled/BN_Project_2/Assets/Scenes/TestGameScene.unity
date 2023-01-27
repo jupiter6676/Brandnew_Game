@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 340549361}
   - component: {fileID: 340549360}
   - component: {fileID: 340549359}
+  - component: {fileID: 340549362}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -511,6 +512,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340549362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340549358}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98d89609f78c47418a1f5eba17891bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mat: {fileID: 2100000, guid: 8906a5a4dec2a154bace9f83b9df3cc9, type: 2}
 --- !u!1 &353718551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1552,7 @@ GameObject:
   - component: {fileID: 1412750845}
   - component: {fileID: 1412750844}
   - component: {fileID: 1412750843}
+  - component: {fileID: 1412750846}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Interaction
@@ -1638,6 +1653,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1412750846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412750842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5ee1c84cbced24ab14bb86d199f3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue:
+    name: "\uB18D\uB2F4\uACF0_\uD14C\uC2A4\uD2B8"
+    line: {x: 1, y: 3}
+    dialogues:
+    - name: 
+      context: []
+    - name: 
+      context: []
+    - name: 
+      context: []
+--- !u!1 &1444037435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1444037437}
+  - component: {fileID: 1444037436}
+  - component: {fileID: 1444037438}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1444037436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444037435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2bba58bea4d7b409cc648245b8517d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1444037437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444037435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.072754, y: -0.14410909, z: -9.965531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1444037438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444037435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096311e6d4dabb64abbdfad97fbb5fe8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  csv_fileName: dialogue_test_1
 --- !u!1 &1475996135
 GameObject:
   m_ObjectHideFlags: 0

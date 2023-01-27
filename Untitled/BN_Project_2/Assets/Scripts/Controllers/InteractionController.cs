@@ -134,6 +134,7 @@ public class InteractionController : MonoBehaviour
     {
         clickedInteractive = true;
 
-        dm.ShowDialogue();
+        // 상호작용한 오브젝트의 대사 이벤트를 꺼내온다.
+        dm.ShowDialogue(hit.transform.GetComponent<InteractionEvent>().GetDialogue());
     }
 }
