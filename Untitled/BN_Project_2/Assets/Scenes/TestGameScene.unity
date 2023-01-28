@@ -284,6 +284,7 @@ MonoBehaviour:
   go_NameBar: {fileID: 1475996135}
   txt_dialogue: {fileID: 628644126}
   txt_name: {fileID: 969115019}
+  textDelay: 0.01
 --- !u!1 &246362151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1670,11 +1671,11 @@ MonoBehaviour:
     line: {x: 1, y: 3}
     dialogues:
     - name: 
-      context: []
+      contexts: []
     - name: 
-      context: []
+      contexts: []
     - name: 
-      context: []
+      contexts: []
 --- !u!1 &1444037435
 GameObject:
   m_ObjectHideFlags: 0

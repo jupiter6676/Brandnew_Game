@@ -12,7 +12,7 @@ public class Dialogue
     public string name; // 캐릭터 이름
 
     [Tooltip("대사 내용")]
-    public string[] context; // 배열이라 여러 대사를 담을 수 있음.
+    public string[] contexts; // 배열이라 여러 대사를 담을 수 있음.
 }
 
 [System.Serializable]

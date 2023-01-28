@@ -45,7 +45,7 @@ public class DialogueParser : MonoBehaviour
                 }
             } while (row[0].ToString() == "");  // 다음 줄 캐릭터 이름이 공백이면 대사를 더 채우기
 
-            dialogue.context = contextList.ToArray();   // 리스트를 배열로
+            dialogue.contexts = contextList.ToArray();   // 리스트를 배열로
             dialogueList.Add(dialogue);
         }
 

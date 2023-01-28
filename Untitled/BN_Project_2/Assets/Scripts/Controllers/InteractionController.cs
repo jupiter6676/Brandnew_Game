@@ -7,12 +7,12 @@ public class InteractionController : MonoBehaviour
     [SerializeField] Camera cam;    // 우리가 보고 있는 카메라
     RaycastHit2D hit; // 레이저를 쏴서 맞춘 오브젝트 정보를 저장
 
-    [SerializeField] GameObject go_normalCursor;   // 일반 커서
+    [SerializeField] GameObject go_normalCursor;       // 일반 커서
     [SerializeField] GameObject go_interactiveCursor;  // 상호작용 커서
-    [SerializeField] GameObject go_movableCursor;   // 맵 이동 커서
+    [SerializeField] GameObject go_movableCursor;      // 맵 이동 커서
 
     bool isInteractive = false; // 상호작용 가능 오브젝트에 접촉하는 최초의 순간에 true로 변경
-    bool isMovable = false; // 이동 상호작용 가능 오브젝트에 접촉하는 최초의 순간에 true로 변경
+    bool isMovable = false;     // 이동 상호작용 가능 오브젝트에 접촉하는 최초의 순간에 true로 변경
 
     public static bool clickedInteractive = false;    // 상호작용 가능 오브젝트를 클릭했는지
 
@@ -23,12 +23,14 @@ public class InteractionController : MonoBehaviour
 
 
     // 대사창이 나오면, UI 숨기기 (DialogueManager.cs에서 호출)
-    public void HideUI()
+    // 대화가 끝나면, UI 보이기
+    public void SettingUI(bool p_flag)
     {
-        go_ui_cursor.SetActive(false);
-        go_ui_status.SetActive(false);
-    }
+        go_ui_cursor.SetActive(p_flag);
+        go_ui_status.SetActive(p_flag);
 
+        clickedInteractive = !p_flag;
+    }
 
     void Start()
     {
@@ -37,8 +39,11 @@ public class InteractionController : MonoBehaviour
 
     void Update()
     {
-        CheckObject();
-        LeftClick();
+        if (!clickedInteractive)
+        {
+            CheckObject();
+            LeftClick();
+        }
     }
 
     void CheckObject()
