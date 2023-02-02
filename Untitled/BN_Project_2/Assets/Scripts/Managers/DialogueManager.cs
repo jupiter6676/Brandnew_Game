@@ -76,7 +76,6 @@ public class DialogueManager : MonoBehaviour
         txt_name.text = "";
 
         ic.SettingUI(false);    // 커서, 상태창 숨기기
-        SettingUI(true);    // 대사창, 이름창 보이기
 
         dialogues = p_dialogues;
 
@@ -100,15 +99,53 @@ public class DialogueManager : MonoBehaviour
     {
         SettingUI(true);    // 대사창 이미지를 띄운다.
 
-        string t_ReplaceText = dialogues[dialogueCnt].contexts[contextCnt];   // 특수문자를 ,로 치환
+        string t_ReplaceText = dialogues[dialogueCnt].contexts[contextCnt];
         t_ReplaceText = t_ReplaceText.Replace("`", ",");    // backtick을 comma로 변환
+        t_ReplaceText = t_ReplaceText.Replace("\\n", "\n"); // 엑셀의 \n은 텍스트이기 때문에, 앞에 \를 한 번 더 입력
 
-        txt_name.text = dialogues[dialogueCnt].name;
+        bool t_white = false, t_red = false, t_gray = false;    // 글자색
+        bool t_ignore = false;  // 특수문자는 대사로 출력 X
         
         // 한 글자씩 출력
         for (int i = 0; i < t_ReplaceText.Length; i++)
         {
-            txt_dialogue.text += t_ReplaceText[i];
+            switch (t_ReplaceText[i])
+            {
+                case 'ⓦ': 
+                    t_white = true; t_red = false; t_gray = false; t_ignore = true;
+                    break;
+
+                case 'ⓡ':
+                    t_white = false; t_red = true; t_gray = false; t_ignore = true;
+                    break;
+
+                case 'ⓖ':
+                    t_white = false; t_red = false; t_gray = true; t_ignore = true;
+                    break;
+            }
+
+            string t_letter = t_ReplaceText[i].ToString();
+            if (!t_ignore)
+            {
+                if (t_white)
+                {
+                    t_letter = "<color=#ffffff>" + t_letter + "</color>";    // HTML Tag
+                }
+
+                else if (t_red)
+                {
+                    t_letter = "<color=#E33131>" + t_letter + "</color>";
+                }
+
+                else if (t_gray)
+                {
+                    t_letter = "<color=#A2A2A2>" + t_letter + "</color>";
+                }
+
+                txt_dialogue.text += t_letter;  // 특수문자가 아니면 대사 출력
+            }
+            t_ignore = false;   // 한 글자를 찍으면 다시 false로
+
             yield return new WaitForSeconds(textDelay);
         }
         
@@ -119,6 +156,21 @@ public class DialogueManager : MonoBehaviour
     void SettingUI(bool p_flag)
     {
         go_dialogueBar.SetActive(p_flag);
-        go_NameBar.SetActive(p_flag);
+
+        if (p_flag)
+        {
+            // 독백이면 캐릭터 이름창 표시 X
+            if (dialogues[dialogueCnt].name == "")
+            {
+                go_NameBar.SetActive(false);
+            }
+
+            // 독백이 아닌 경우 캐릭터 이름창 표시 O
+            else
+            {
+                go_NameBar.SetActive(true);
+                txt_name.text = dialogues[dialogueCnt].name;    // 캐릭터 이름
+            }
+        }
     }
 }

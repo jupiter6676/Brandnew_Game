@@ -23,14 +23,12 @@ public class DialogueParser : MonoBehaviour
             Dialogue dialogue = new Dialogue(); // 캐릭터 한 명의 대사들
 
             dialogue.name = row[1];
-            Debug.Log(row[1]);
 
             List<string> contextList = new List<string>();
 
             do
             {
                 contextList.Add(row[2]);
-                Debug.Log(row[2]);
 
                 // 다음 줄 미리 비교
                 if (++i < data.Length)
