@@ -5,8 +5,9 @@ using TMPro;   // TextMeshProUGUI, TMP_Text 클래스 사용
 
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] GameObject go_standingImage;
     [SerializeField] GameObject go_dialogueBar;
-    [SerializeField] GameObject go_NameBar;
+    [SerializeField] GameObject go_nameBar;
 
     [SerializeField] TMP_Text txt_dialogue;
     [SerializeField] TMP_Text txt_name;
@@ -23,11 +24,13 @@ public class DialogueManager : MonoBehaviour
     int contextCnt = 0;     // 대사 카운트. 한 캐릭터가 여러 대사를 할 수 있다.
 
     InteractionController ic;
+    SpriteManager sm;
 
 
     void Start()
     {
         ic = FindObjectOfType<InteractionController>();
+        sm = FindObjectOfType<SpriteManager>();
     }
 
     private void Update()
@@ -94,10 +97,22 @@ public class DialogueManager : MonoBehaviour
         SettingUI(false);   // 대사창, 이름창 숨기기
     }
 
+    void ChangeSprite()
+    {
+        // 캐릭터가 대사를 할 때, spriteName이 공백이 아니면 이미지 변경
+        //if (dialogues[dialogueCnt].spriteName[contextCnt] != "")
+        //{
+        //    StartCoroutine(sm.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
+        //}
+
+        StartCoroutine(sm.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
+    }
+
     // 텍스트 출력 코루틴
     IEnumerator TypeWriter()
     {
         SettingUI(true);    // 대사창 이미지를 띄운다.
+        ChangeSprite();     // 스탠딩 이미지를 변경한다.
 
         string t_ReplaceText = dialogues[dialogueCnt].contexts[contextCnt];
         t_ReplaceText = t_ReplaceText.Replace("`", ",");    // backtick을 comma로 변환
@@ -156,19 +171,20 @@ public class DialogueManager : MonoBehaviour
     void SettingUI(bool p_flag)
     {
         go_dialogueBar.SetActive(p_flag);
+        go_standingImage.SetActive(p_flag);
 
         if (p_flag)
         {
             // 독백이면 캐릭터 이름창 표시 X
             if (dialogues[dialogueCnt].name == "")
             {
-                go_NameBar.SetActive(false);
+                go_nameBar.SetActive(false);
             }
 
             // 독백이 아닌 경우 캐릭터 이름창 표시 O
             else
             {
-                go_NameBar.SetActive(true);
+                go_nameBar.SetActive(true);
                 txt_name.text = dialogues[dialogueCnt].name;    // 캐릭터 이름
             }
         }

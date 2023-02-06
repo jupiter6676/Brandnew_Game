@@ -23,12 +23,13 @@ public class DialogueParser : MonoBehaviour
             Dialogue dialogue = new Dialogue(); // 캐릭터 한 명의 대사들
 
             dialogue.name = row[1];
-
             List<string> contextList = new List<string>();
+            List<string> spriteList = new List<string>();
 
             do
             {
                 contextList.Add(row[2]);
+                spriteList.Add(row[3]);
 
                 // 다음 줄 미리 비교
                 if (++i < data.Length)
@@ -44,6 +45,7 @@ public class DialogueParser : MonoBehaviour
             } while (row[0].ToString() == "");  // 다음 줄 캐릭터 이름이 공백이면 대사를 더 채우기
 
             dialogue.contexts = contextList.ToArray();   // 리스트를 배열로
+            dialogue.spriteName = spriteList.ToArray();
             dialogueList.Add(dialogue);
         }
 
