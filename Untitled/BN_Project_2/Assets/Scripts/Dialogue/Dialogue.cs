@@ -3,19 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public enum CameraType
+{
+    Target, // 오브젝트 타겟
+    FadeOut,
+    FadeIn,
+    FlashOut,
+    FlashIn,
+}
+
 // 커스텀 클래스
-// 커스텀 클래스를 인스펙터 창에서 수정하기 위해서 다음 구문을 추가
-[System.Serializable]
+[System.Serializable]   // 커스텀 클래스를 인스펙터 창에서 수정하기 위해서 이 구문을 추가
 public class Dialogue
 {
+    [Header("카메라 타겟팅 대상")]
+    public CameraType cameraType;
+    public Transform tf_target;
+
     [Header("스탠딩 이미지")]
     public Transform tf_standing;
-    // public Image img_standing;
 
-    [Tooltip("캐릭터")]   // 대사를 하는 캐릭터 이름을 inspector 창에 띄우기 위한 툴팁
-    public string name; // 캐릭터 이름
+    [Tooltip("캐릭터")]    // 대사를 하는 캐릭터 이름을 inspector 창에 띄우기 위한 툴팁
+    public string name;    // 캐릭터 이름
 
-    [HideInInspector]   // 인스펙터 창에서 변수를 숨긴다.
+    [HideInInspector]         // 인스펙터 창에서 변수를 숨긴다.
     public string[] contexts; // 배열이라 여러 대사를 담을 수 있다.
 
     [HideInInspector]

@@ -23,14 +23,18 @@ public class DialogueManager : MonoBehaviour
     int dialogueCnt = 0;    // 대화 카운트. 한 캐릭터가 다 말하면 1 증가
     int contextCnt = 0;     // 대사 카운트. 한 캐릭터가 여러 대사를 할 수 있다.
 
-    InteractionController ic;
-    SpriteManager sm;
+    InteractionController interactionController;
+    SpriteManager spriteManager;
+    CameraController cam;
+    SplashManager splashManager;
 
 
     void Start()
     {
-        ic = FindObjectOfType<InteractionController>();
-        sm = FindObjectOfType<SpriteManager>();
+        interactionController = FindObjectOfType<InteractionController>();
+        spriteManager = FindObjectOfType<SpriteManager>();
+        cam = FindObjectOfType<CameraController>();
+        splashManager = FindObjectOfType<SplashManager>();
     }
 
     private void Update()
@@ -57,7 +61,9 @@ public class DialogueManager : MonoBehaviour
 
                         if (++dialogueCnt < dialogues.Length)
                         {
-                            StartCoroutine(TypeWriter());
+                            // cam.CameraTragetting(dialogues[dialogueCnt].tf_target);
+                            // StartCoroutine(TypeWriter());
+                            StartCoroutine(CameraTargettingType());
                         }
 
                         // 다음 캐릭터가 없으면 (대화가 끝났으면)
@@ -78,9 +84,47 @@ public class DialogueManager : MonoBehaviour
         txt_dialogue.text = "";
         txt_name.text = "";
 
-        ic.SettingUI(false);    // 커서, 상태창 숨기기
+        interactionController.SettingUI(false);    // 커서, 상태창 숨기기
 
         dialogues = p_dialogues;
+
+        // cam.CameraTragetting(dialogues[dialogueCnt].tf_target);
+        // StartCoroutine(TypeWriter());
+        StartCoroutine(CameraTargettingType());
+    }
+
+    IEnumerator CameraTargettingType()
+    {
+        switch (dialogues[dialogueCnt].cameraType)
+        {
+            case CameraType.FadeIn:
+                SettingUI(false);
+                SplashManager.isFinished = false;
+                StartCoroutine(splashManager.FadeIn(false, true));  // 검은 화면, 느리게 전환
+                yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
+                break;
+
+            case CameraType.FadeOut:
+                SettingUI(false);
+                SplashManager.isFinished = false;
+                StartCoroutine(splashManager.FadeOut(false, true));  // 흰 화면, 느리게 전환
+                yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
+                break;
+
+            case CameraType.FlashIn:
+                SettingUI(false);
+                SplashManager.isFinished = false;
+                StartCoroutine(splashManager.FadeIn(true, true));  // 검은 화면, 느리게 전환
+                yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
+                break;
+
+            case CameraType.FlashOut:
+                SettingUI(false);
+                SplashManager.isFinished = false;
+                StartCoroutine(splashManager.FadeOut(true, true));  // 흰 화면, 느리게 전환
+                yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
+                break;
+        }
 
         StartCoroutine(TypeWriter());
     }
@@ -93,7 +137,7 @@ public class DialogueManager : MonoBehaviour
         dialogues = null;
         isNext = false;
 
-        ic.SettingUI(true); // 커서, 상태창 보이기
+        interactionController.SettingUI(true); // 커서, 상태창 보이기
         SettingUI(false);   // 대사창, 이름창 숨기기
     }
 
@@ -105,7 +149,7 @@ public class DialogueManager : MonoBehaviour
         //    StartCoroutine(sm.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
         //}
 
-        StartCoroutine(sm.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
+        StartCoroutine(spriteManager.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
     }
 
     // 텍스트 출력 코루틴
@@ -187,6 +231,11 @@ public class DialogueManager : MonoBehaviour
                 go_nameBar.SetActive(true);
                 txt_name.text = dialogues[dialogueCnt].name;    // 캐릭터 이름
             }
+        }
+
+        else
+        {
+            go_nameBar.SetActive(false);
         }
     }
 }
