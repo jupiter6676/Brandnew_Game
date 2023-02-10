@@ -23,13 +23,15 @@ public class DialogueParser : MonoBehaviour
             Dialogue dialogue = new Dialogue(); // 캐릭터 한 명의 대사들
 
             dialogue.name = row[1];
-            List<string> contextList = new List<string>();
-            List<string> spriteList = new List<string>();
+            List<string> contextList = new List<string>();  // 대사 리스트
+            List<string> spriteList = new List<string>();   // 스탠딩 이미지 리스트
+            List<string> cutsceneList = new List<string>(); // 컷신 이미지 리스트
 
             do
             {
                 contextList.Add(row[2]);
                 spriteList.Add(row[3]);
+                cutsceneList.Add(row[4]);
 
                 // 다음 줄 미리 비교
                 if (++i < data.Length)
@@ -46,6 +48,7 @@ public class DialogueParser : MonoBehaviour
 
             dialogue.contexts = contextList.ToArray();   // 리스트를 배열로
             dialogue.spriteName = spriteList.ToArray();
+            dialogue.cutsceneName = cutsceneList.ToArray();
             dialogueList.Add(dialogue);
         }
 

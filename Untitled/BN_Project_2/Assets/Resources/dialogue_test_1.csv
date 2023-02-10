@@ -1,7 +1,12 @@
-﻿ID,Character Name,Context,Sprite Name,Comment
-1,농담곰,대사1 - 안녕` 내 이름은 ⓡ농담곰ⓦ이야.,jokebear_0,
-,,대사2 - 너의 이름은 뭐야?,jokebear_1,
-2,최신,대사3 - 반가워. \n내 이름은 최신이야.,,
-3,농담곰,대사4 - 그렇구나.,jokebear_0,
-,,대사5 - 알았어.,jokebear_0,
-4,,ⓖ대사6 (독백) - 농담곰이 무뚝뚝하게 말했다.,,독백
+﻿ID,Character Name,Context,Sprite Name,Cutscene Name,Comment
+1,농담곰,안녕` 내 이름은 ⓡ농담곰ⓦ이야.,jokebear_0,,
+,,너의 이름은 뭐야?,jokebear_1,,
+2,최신,반가워. \n내 이름은 최신이야.,,,
+3,농담곰,그렇구나.,jokebear_0,,
+,,그런데 저게 뭔지 알아?,jokebear_0,,
+4,,ⓖ라며 농담곰이 가리킨 곳에는…,,,독백
+5,,ⓖ아무것도 없었다…,,Cutscene_0,독백
+,,ⓖ쓸 대사도 없었다…..,,,
+6,최신,뭐가 있다는 거야?,,,
+7,농담곰,하긴 너가 뭘 알겠어.,jokebear_0,,
+8,최신,…,,,

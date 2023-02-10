@@ -23,18 +23,18 @@ public class DialogueManager : MonoBehaviour
     int dialogueCnt = 0;    // 대화 카운트. 한 캐릭터가 다 말하면 1 증가
     int contextCnt = 0;     // 대사 카운트. 한 캐릭터가 여러 대사를 할 수 있다.
 
-    InteractionController interactionController;
-    SpriteManager spriteManager;
-    CameraController cam;
-    SplashManager splashManager;
+    InteractionController theInteractionController;
+    SpriteManager theSpriteManager;
+    SplashManager theSplashManager;
+    CutsceneManager theCutsceneManager;
 
 
     void Start()
     {
-        interactionController = FindObjectOfType<InteractionController>();
-        spriteManager = FindObjectOfType<SpriteManager>();
-        cam = FindObjectOfType<CameraController>();
-        splashManager = FindObjectOfType<SplashManager>();
+        theInteractionController = FindObjectOfType<InteractionController>();
+        theSpriteManager = FindObjectOfType<SpriteManager>();
+        theSplashManager = FindObjectOfType<SplashManager>();
+        theCutsceneManager = FindObjectOfType<CutsceneManager>();
     }
 
     private void Update()
@@ -69,7 +69,7 @@ public class DialogueManager : MonoBehaviour
                         // 다음 캐릭터가 없으면 (대화가 끝났으면)
                         else
                         {
-                            EndDialogue();
+                            StartCoroutine(EndDialogue());
                         }
                     }
                 }
@@ -84,7 +84,7 @@ public class DialogueManager : MonoBehaviour
         txt_dialogue.text = "";
         txt_name.text = "";
 
-        interactionController.SettingUI(false);    // 커서, 상태창 숨기기
+        theInteractionController.SettingUI(false);    // 커서, 상태창 숨기기
 
         dialogues = p_dialogues;
 
@@ -100,44 +100,67 @@ public class DialogueManager : MonoBehaviour
             case CameraType.FadeIn:
                 SettingUI(false);
                 SplashManager.isFinished = false;
-                StartCoroutine(splashManager.FadeIn(false, true));  // 검은 화면, 느리게 전환
+                StartCoroutine(theSplashManager.FadeIn(false, true));  // 검은 화면, 느리게 전환
                 yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
                 break;
 
             case CameraType.FadeOut:
                 SettingUI(false);
                 SplashManager.isFinished = false;
-                StartCoroutine(splashManager.FadeOut(false, true));  // 흰 화면, 느리게 전환
+                StartCoroutine(theSplashManager.FadeOut(false, true));  // 흰 화면, 느리게 전환
                 yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
                 break;
 
             case CameraType.FlashIn:
                 SettingUI(false);
                 SplashManager.isFinished = false;
-                StartCoroutine(splashManager.FadeIn(true, true));  // 검은 화면, 느리게 전환
+                StartCoroutine(theSplashManager.FadeIn(true, true));  // 검은 화면, 느리게 전환
                 yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
                 break;
 
             case CameraType.FlashOut:
                 SettingUI(false);
                 SplashManager.isFinished = false;
-                StartCoroutine(splashManager.FadeOut(true, true));  // 흰 화면, 느리게 전환
+                StartCoroutine(theSplashManager.FadeOut(true, true));  // 흰 화면, 느리게 전환
                 yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
+                break;
+
+            case CameraType.ShowCutscene:
+                SettingUI(false);
+                CutsceneManager.isFinished = false;
+                StartCoroutine(theCutsceneManager.CutsceneCoroutine(dialogues[dialogueCnt].cutsceneName[contextCnt], true));
+                yield return new WaitUntil(() => CutsceneManager.isFinished);
+                break;
+
+            case CameraType.HideCutscene:
+                SettingUI(false);
+                CutsceneManager.isFinished = false;
+                StartCoroutine(theCutsceneManager.CutsceneCoroutine(null, false));
+                yield return new WaitUntil(() => CutsceneManager.isFinished);
                 break;
         }
 
         StartCoroutine(TypeWriter());
     }
 
-    void EndDialogue()
+    IEnumerator EndDialogue()
     {
+        // Hide Cutscene
+        if (theCutsceneManager.CheckCutscene())
+        {
+            SettingUI(false);
+            CutsceneManager.isFinished = false;
+            StartCoroutine(theCutsceneManager.CutsceneCoroutine(null, false));
+            yield return new WaitUntil(() => CutsceneManager.isFinished);
+        }
+
         isDialogue = false;
         contextCnt = 0;
         dialogueCnt = 0;
         dialogues = null;
         isNext = false;
 
-        interactionController.SettingUI(true); // 커서, 상태창 보이기
+        theInteractionController.SettingUI(true); // 커서, 상태창 보이기
         SettingUI(false);   // 대사창, 이름창 숨기기
     }
 
@@ -149,7 +172,7 @@ public class DialogueManager : MonoBehaviour
         //    StartCoroutine(sm.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
         //}
 
-        StartCoroutine(spriteManager.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
+        StartCoroutine(theSpriteManager.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
     }
 
     // 텍스트 출력 코루틴

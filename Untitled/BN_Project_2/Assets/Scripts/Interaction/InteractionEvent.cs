@@ -17,9 +17,6 @@ public class InteractionEvent : MonoBehaviour
             // dialogueEvent에 넣은 Standing Image 오브젝트를 임시 변수에 넣기
             t_dialogueEvent.dialogues[i].tf_standing = dialogueEvent.dialogues[i].tf_standing;
 
-            // dialogueEvent에 넣은 타겟팅 대상 오브젝트를 임시 변수에 넣기
-            t_dialogueEvent.dialogues[i].tf_target = dialogueEvent.dialogues[i].tf_target;
-
             // dialogueEvent에 넣은 카메라 타입을 임시 변수에 넣기
             t_dialogueEvent.dialogues[i].cameraType = dialogueEvent.dialogues[i].cameraType;
         }

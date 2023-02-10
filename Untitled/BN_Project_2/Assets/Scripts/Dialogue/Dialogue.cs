@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public enum CameraType
 {
-    Target, // 오브젝트 타겟
+    Default, // 아무 효과 X
     FadeOut,
     FadeIn,
     FlashOut,
     FlashIn,
+    ShowCutscene,
+    HideCutscene,
 }
 
 // 커스텀 클래스
@@ -19,7 +21,6 @@ public class Dialogue
 {
     [Header("카메라 타겟팅 대상")]
     public CameraType cameraType;
-    public Transform tf_target;
 
     [Header("스탠딩 이미지")]
     public Transform tf_standing;
@@ -31,7 +32,10 @@ public class Dialogue
     public string[] contexts; // 배열이라 여러 대사를 담을 수 있다.
 
     [HideInInspector]
-    public string[] spriteName; // 여러 개의 스프라이트 이미지
+    public string[] spriteName;     // 여러 개의 스탠딩 이미지
+
+    [HideInInspector]
+    public string[] cutsceneName;   // 여러 개의 컷신 이미지
 }
 
 [System.Serializable]
