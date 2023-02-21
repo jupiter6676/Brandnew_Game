@@ -26,4 +26,19 @@ public class InteractionEvent : MonoBehaviour
 
         return dialogueEvent.dialogues;
     }
+
+    public AppearType GetAppearType()
+    {
+        return dialogueEvent.appearType;
+    }
+
+    public GameObject[] GetAppearTargets()
+    {
+        return dialogueEvent.go_appearTargets;
+    }
+
+    public GameObject[] GetDisppearTargets()
+    {
+        return dialogueEvent.go_disappearTargets;
+    }
 }

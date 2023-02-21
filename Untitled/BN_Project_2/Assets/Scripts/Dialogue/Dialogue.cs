@@ -15,6 +15,13 @@ public enum CameraType
     HideCutscene,
 }
 
+public enum AppearType
+{
+    Default,    // 아무 변화 X
+    Change,     // Appear 혹은 Disappear
+}
+
+
 // 커스텀 클래스
 [System.Serializable]   // 커스텀 클래스를 인스펙터 창에서 수정하기 위해서 이 구문을 추가
 public class Dialogue
@@ -44,4 +51,9 @@ public class DialogueEvent
     public string name;     // 대화 이벤트 이름
     public Vector2 line;    // x줄부터 y줄까지의 대사를 가져온다.
     public Dialogue[] dialogues;    // 대사를 여러 명이서 하기 때문에 배열 생성
+
+    [Space]
+    public AppearType appearType;
+    public GameObject[] go_appearTargets;       // 이벤트 후 새로 등장시킬 오브젝트 배열
+    public GameObject[] go_disappearTargets;    // 이벤트 후 퇴장시킬 오브젝트 배열
 }

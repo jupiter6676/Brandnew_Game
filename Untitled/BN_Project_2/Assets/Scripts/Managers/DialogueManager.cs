@@ -23,6 +23,33 @@ public class DialogueManager : MonoBehaviour
     int dialogueCnt = 0;    // 대화 카운트. 한 캐릭터가 다 말하면 1 증가
     int contextCnt = 0;     // 대사 카운트. 한 캐릭터가 여러 대사를 할 수 있다.
 
+    GameObject[] go_appearTargets;
+    GameObject[] go_disappearTargets;
+    byte appearTypeNum; // 0: 아무 변화 X, 1: 변화
+    const byte NONE = 0, CHANGE = 1;
+
+    public void SetAppearObjects(GameObject[] p_appear, GameObject[] p_disappear)
+    {
+        go_appearTargets = p_appear;
+        go_disappearTargets = p_disappear;
+
+        appearTypeNum = CHANGE;
+    }
+
+    //public void SetAppearObjects(GameObject[] p_target)
+    //{
+    //    go_appearTargets = p_target;
+
+    //    appearTypeNum = CHANGE;
+    //}
+
+    //public void SetDisappearObjects(GameObject[] p_target)
+    //{
+    //    go_disappearTargets = p_target;
+
+    //    appearTypeNum = CHANGE;
+    //}
+
     InteractionController theInteractionController;
     SpriteManager theSpriteManager;
     SplashManager theSplashManager;
@@ -154,6 +181,8 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitUntil(() => CutsceneManager.isFinished);
         }
 
+        AppearOrDisappearObjects();
+
         isDialogue = false;
         contextCnt = 0;
         dialogueCnt = 0;
@@ -162,6 +191,34 @@ public class DialogueManager : MonoBehaviour
 
         theInteractionController.SettingUI(true); // 커서, 상태창 보이기
         SettingUI(false);   // 대사창, 이름창 숨기기
+    }
+
+    void AppearOrDisappearObjects()
+    {
+        if (appearTypeNum == CHANGE)
+        {
+            // 등장시킬 오브젝트
+            if (go_appearTargets != null)
+            {
+                for (int i = 0; i < go_appearTargets.Length; i++)
+                {
+                    go_appearTargets[i].SetActive(true);
+                }
+            }
+
+            // 퇴장시킬 오브젝트
+            if (go_disappearTargets != null)
+            {
+                for (int i = 0; i < go_disappearTargets.Length; i++)
+                {
+                    go_disappearTargets[i].SetActive(false);
+                }
+            }
+        }
+
+        go_appearTargets = null;
+        go_disappearTargets = null;
+        appearTypeNum = NONE;
     }
 
     void ChangeSprite()
