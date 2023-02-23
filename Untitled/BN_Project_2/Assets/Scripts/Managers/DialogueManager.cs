@@ -5,6 +5,8 @@ using TMPro;   // TextMeshProUGUI, TMP_Text 클래스 사용
 
 public class DialogueManager : MonoBehaviour
 {
+    public static bool isWaiting = false;   // true가 되면서 자동 이벤트 전에 대기한다.
+
     [SerializeField] GameObject go_standingImage;
     [SerializeField] GameObject go_dialogueBar;
     [SerializeField] GameObject go_nameBar;
@@ -115,8 +117,17 @@ public class DialogueManager : MonoBehaviour
 
         dialogues = p_dialogues;
 
-        // cam.CameraTragetting(dialogues[dialogueCnt].tf_target);
-        // StartCoroutine(TypeWriter());
+        StartCoroutine(StartDialogue());
+    }
+
+    IEnumerator StartDialogue()
+    {
+        if (isWaiting)
+        {
+            yield return new WaitForSeconds(0.5f);  // 자동 이벤트 0.5초 대기
+        }
+
+        isWaiting = false;
         StartCoroutine(CameraTargettingType());
     }
 
@@ -134,14 +145,14 @@ public class DialogueManager : MonoBehaviour
             case CameraType.FadeOut:
                 SettingUI(false);
                 SplashManager.isFinished = false;
-                StartCoroutine(theSplashManager.FadeOut(false, true));  // 흰 화면, 느리게 전환
+                StartCoroutine(theSplashManager.FadeOut(false, true));  // 검은 화면, 느리게 전환
                 yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
                 break;
 
             case CameraType.FlashIn:
                 SettingUI(false);
                 SplashManager.isFinished = false;
-                StartCoroutine(theSplashManager.FadeIn(true, true));  // 검은 화면, 느리게 전환
+                StartCoroutine(theSplashManager.FadeIn(true, true));  // 흰 화면, 느리게 전환
                 yield return new WaitUntil(() => SplashManager.isFinished); // isFinished가 true가 될 때까지 대기
                 break;
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InteractionEvent : MonoBehaviour
 {
+    [SerializeField] bool isAutoEvent = false;  // true → 자동으로 실행되는 이벤트
+
     [SerializeField] DialogueEvent dialogueEvent;
 
     // DatabaseManager에 저장된 실제 대사 데이터를 꺼내온다.
@@ -40,5 +42,25 @@ public class InteractionEvent : MonoBehaviour
     public GameObject[] GetDisppearTargets()
     {
         return dialogueEvent.go_disappearTargets;
+    }
+
+    private void Update()
+    {
+        // 자동 이벤트이고, 데이터 파싱 후 테이블에 모두 저장되면 (오류 방지)
+        if (isAutoEvent && DatabaseManager.isFinish)
+        {
+            DialogueManager theDM = FindObjectOfType<DialogueManager>();
+            DialogueManager.isWaiting = true;   // true → 자동 이벤트 대기
+
+            // 오브젝트 등장/퇴장
+            if (GetAppearType() == AppearType.Change)
+            {
+                theDM.SetAppearObjects(GetAppearTargets(), GetDisppearTargets());
+            }
+
+            theDM.ShowDialogue(GetDialogue());
+
+            gameObject.SetActive(false);    // 자동 이벤트를 한 번만 보기 위해 아예 비활성화한다.
+        }
     }
 }
