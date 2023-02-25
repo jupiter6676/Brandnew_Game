@@ -25,6 +25,16 @@ public class DialogueManager : MonoBehaviour
     int dialogueCnt = 0;    // 대화 카운트. 한 캐릭터가 다 말하면 1 증가
     int contextCnt = 0;     // 대사 카운트. 한 캐릭터가 여러 대사를 할 수 있다.
 
+    // 다음 이벤트를 위한 변수/함수
+    GameObject go_nextEvent;
+
+    public void SetNextEvent(GameObject p_nextEvent)
+    {
+        go_nextEvent = p_nextEvent;
+    }
+
+
+    // 이벤트가 끝나면 등장/퇴장시킬 오브젝트들
     GameObject[] go_appearTargets;
     GameObject[] go_disappearTargets;
     byte appearTypeNum; // 0: 아무 변화 X, 1: 변화
@@ -38,19 +48,6 @@ public class DialogueManager : MonoBehaviour
         appearTypeNum = CHANGE;
     }
 
-    //public void SetAppearObjects(GameObject[] p_target)
-    //{
-    //    go_appearTargets = p_target;
-
-    //    appearTypeNum = CHANGE;
-    //}
-
-    //public void SetDisappearObjects(GameObject[] p_target)
-    //{
-    //    go_disappearTargets = p_target;
-
-    //    appearTypeNum = CHANGE;
-    //}
 
     InteractionController theInteractionController;
     SpriteManager theSpriteManager;
@@ -202,6 +199,17 @@ public class DialogueManager : MonoBehaviour
 
         theInteractionController.SettingUI(true); // 커서, 상태창 보이기
         SettingUI(false);   // 대사창, 이름창 숨기기
+
+        // 모든 대화가 끝날 때까지 기다린 후, 다음 이벤트가 있으면 실행
+        yield return new WaitUntil(() => !InteractionController.clickedInteractive);
+
+        if (go_nextEvent != null)
+        {
+            Debug.Log(go_nextEvent);
+            go_nextEvent.SetActive(true);
+            go_nextEvent = null;
+            // go_nextEvent.SetActive(false);
+        }
     }
 
     void AppearOrDisappearObjects()
@@ -234,12 +242,6 @@ public class DialogueManager : MonoBehaviour
 
     void ChangeSprite()
     {
-        // 캐릭터가 대사를 할 때, spriteName이 공백이 아니면 이미지 변경
-        //if (dialogues[dialogueCnt].spriteName[contextCnt] != "")
-        //{
-        //    StartCoroutine(sm.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
-        //}
-
         StartCoroutine(theSpriteManager.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
     }
 

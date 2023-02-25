@@ -8,6 +8,8 @@ public class InteractionEvent : MonoBehaviour
 
     [SerializeField] DialogueEvent dialogueEvent;
 
+    DialogueManager theDM;
+
     // DatabaseManager에 저장된 실제 대사 데이터를 꺼내온다.
     public Dialogue[] GetDialogue()
     {
@@ -44,12 +46,23 @@ public class InteractionEvent : MonoBehaviour
         return dialogueEvent.go_disappearTargets;
     }
 
+    public GameObject GetNextEvent()
+    {
+        return dialogueEvent.go_nextEvent;
+    }
+
+
+    private void Start()
+    {
+        theDM = FindObjectOfType<DialogueManager>();
+        theDM.SetNextEvent(GetNextEvent()); // 다음 이벤트 정보를 저장
+    }
+
     private void Update()
     {
         // 자동 이벤트이고, 데이터 파싱 후 테이블에 모두 저장되면 (오류 방지)
         if (isAutoEvent && DatabaseManager.isFinish)
         {
-            DialogueManager theDM = FindObjectOfType<DialogueManager>();
             DialogueManager.isWaiting = true;   // true → 자동 이벤트 대기
 
             // 오브젝트 등장/퇴장

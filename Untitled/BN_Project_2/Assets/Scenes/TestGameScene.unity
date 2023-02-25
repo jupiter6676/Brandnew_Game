@@ -1546,6 +1546,72 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979571479}
   m_CullTransparentMesh: 1
+--- !u!1 &1042895739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1042895740}
+  - component: {fileID: 1042895741}
+  m_Layer: 0
+  m_Name: Test 02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1042895740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042895739}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1063971334}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042895741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042895739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5ee1c84cbced24ab14bb86d199f3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAutoEvent: 1
+  dialogueEvent:
+    name: "\uD14C\uC2A4\uD2B8 2"
+    line: {x: 4, y: 5}
+    dialogues:
+    - cameraType: 4
+      tf_standing: {fileID: 1906925358}
+      name: 
+      contexts: []
+      spriteName: []
+      cutsceneName: []
+    - cameraType: 0
+      tf_standing: {fileID: 1906925358}
+      name: 
+      contexts: []
+      spriteName: []
+      cutsceneName: []
+    appearType: 1
+    go_appearTargets: []
+    go_disappearTargets:
+    - {fileID: 321187470}
+    go_nextEvent: {fileID: 0}
 --- !u!1 &1063971333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,6 +1641,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1747156917}
+  - {fileID: 1042895740}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2042,44 +2109,8 @@ MonoBehaviour:
   isAutoEvent: 0
   dialogueEvent:
     name: 
-    line: {x: 1, y: 8}
+    line: {x: 1, y: 2}
     dialogues:
-    - cameraType: 0
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
-    - cameraType: 0
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
-    - cameraType: 0
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
-    - cameraType: 0
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
-    - cameraType: 0
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
-    - cameraType: 0
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
     - cameraType: 0
       tf_standing: {fileID: 1906925358}
       name: 
@@ -2097,6 +2128,7 @@ MonoBehaviour:
     - {fileID: 1274621972}
     go_disappearTargets:
     - {fileID: 321187470}
+    go_nextEvent: {fileID: 1747156916}
 --- !u!1 &1444037435
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,7 +2434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1747156917
 Transform:
   m_ObjectHideFlags: 0
@@ -2433,21 +2465,9 @@ MonoBehaviour:
   isAutoEvent: 1
   dialogueEvent:
     name: "\uD14C\uC2A4\uD2B8 1"
-    line: {x: 1, y: 4}
+    line: {x: 3, y: 4}
     dialogues:
     - cameraType: 4
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
-    - cameraType: 0
-      tf_standing: {fileID: 1906925358}
-      name: 
-      contexts: []
-      spriteName: []
-      cutsceneName: []
-    - cameraType: 0
       tf_standing: {fileID: 1906925358}
       name: 
       contexts: []
@@ -2463,6 +2483,7 @@ MonoBehaviour:
     go_appearTargets: []
     go_disappearTargets:
     - {fileID: 321187470}
+    go_nextEvent: {fileID: 0}
 --- !u!1 &1906925357
 GameObject:
   m_ObjectHideFlags: 0

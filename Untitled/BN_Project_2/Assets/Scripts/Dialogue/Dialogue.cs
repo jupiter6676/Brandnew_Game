@@ -56,4 +56,7 @@ public class DialogueEvent
     public AppearType appearType;
     public GameObject[] go_appearTargets;       // 이벤트 후 새로 등장시킬 오브젝트 배열
     public GameObject[] go_disappearTargets;    // 이벤트 후 퇴장시킬 오브젝트 배열
+
+    [Space]
+    public GameObject go_nextEvent; // null → 대화 끝 / null X → 다음 이벤트 연속 호출
 }
