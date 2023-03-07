@@ -134,9 +134,11 @@ GameObject:
   - component: {fileID: 17142708}
   - component: {fileID: 17142707}
   - component: {fileID: 17142709}
+  - component: {fileID: 17142711}
+  - component: {fileID: 17142710}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Move_Interaction
+  m_TagString: Interaction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,6 +236,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.2, y: 5.12}
   m_EdgeRadius: 0
+--- !u!114 &17142710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17142706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1241b6d4b932aff47b96a60d9adb321c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Corridor
+  locationName: Room01ToCorridor
+--- !u!114 &17142711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17142706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14587e2a63134a4bb22472c94bbb37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 1
+  isObject: 0
+  interactionName: "\uBB38"
 --- !u!1 &73917392
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +474,7 @@ GameObject:
   - component: {fileID: 321187473}
   - component: {fileID: 321187472}
   - component: {fileID: 321187471}
+  - component: {fileID: 321187474}
   m_Layer: 0
   m_Name: Crowbar
   m_TagString: Interaction
@@ -543,6 +575,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -28.216}
+--- !u!114 &321187474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321187470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14587e2a63134a4bb22472c94bbb37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isObject: 1
+  interactionName: "\uD06C\uB85C\uC6B0\uBC14"
 --- !u!1 &340549358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +1779,7 @@ GameObject:
   - component: {fileID: 1274621975}
   - component: {fileID: 1274621974}
   - component: {fileID: 1274621973}
+  - component: {fileID: 1274621976}
   m_Layer: 0
   m_Name: Key
   m_TagString: Interaction
@@ -1832,6 +1880,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1274621976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1274621972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14587e2a63134a4bb22472c94bbb37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isObject: 1
+  interactionName: 
 --- !u!1 &1359047143
 GameObject:
   m_ObjectHideFlags: 0
@@ -1993,6 +2056,7 @@ GameObject:
   - component: {fileID: 1412750845}
   - component: {fileID: 1412750844}
   - component: {fileID: 1412750843}
+  - component: {fileID: 1412750847}
   - component: {fileID: 1412750846}
   m_Layer: 0
   m_Name: Bear
@@ -2129,6 +2193,21 @@ MonoBehaviour:
     go_disappearTargets:
     - {fileID: 321187470}
     go_nextEvent: {fileID: 1747156916}
+--- !u!114 &1412750847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412750842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14587e2a63134a4bb22472c94bbb37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDoor: 0
+  isObject: 1
+  interactionName: "\uB18D\uB2F4\uACF0 \uB300\uD654"
 --- !u!1 &1444037435
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2222,7 @@ GameObject:
   - component: {fileID: 1444037439}
   - component: {fileID: 1444037440}
   - component: {fileID: 1444037441}
+  - component: {fileID: 1444037442}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -2233,6 +2313,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   img_cutscene: {fileID: 979571481}
+--- !u!114 &1444037442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444037435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7e725e1eac6bc46bea7fdcf1325481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1475996135
 GameObject:
   m_ObjectHideFlags: 0

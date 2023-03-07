@@ -11,6 +11,7 @@ public class InteractionController : MonoBehaviour
     [SerializeField] GameObject go_interactiveCursor;  // 상호작용 커서
     [SerializeField] GameObject go_movableCursor;      // 맵 이동 커서
 
+    // 둘 중 하나는 무조건 true
     bool isInteractive = false; // 상호작용 가능 오브젝트에 접촉하는 최초의 순간에 true로 변경
     bool isMovable = false;     // 이동 상호작용 가능 오브젝트에 접촉하는 최초의 순간에 true로 변경
 
@@ -71,7 +72,6 @@ public class InteractionController : MonoBehaviour
         // 상호작용이 가능한 물체에 커서를 이동했을 때 실행
         if (hit.transform.CompareTag("Interaction"))
         {
-            // isContact == false일 때만 실행
             if (!isInteractive)
             {
                 isInteractive = true;
@@ -86,7 +86,6 @@ public class InteractionController : MonoBehaviour
         // 이동 상호작용이 가능한 물체에 커서를 이동했을 때 실행
         else if (hit.transform.CompareTag("Move_Interaction"))
         {
-            // isContact == false일 때만 실행
             if (!isMovable)
             {
                 isMovable = true;
@@ -126,7 +125,7 @@ public class InteractionController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (isInteractive)
+                if (isInteractive || isMovable)
                 {
                     Interact();
                 }
@@ -135,17 +134,43 @@ public class InteractionController : MonoBehaviour
     }
 
     // 상호작용 가능 오브젝트를 좌클릭했을 때, 대사창을 보여줌.
+    // 문을 좌클릭했을 때는 맵을 이동함.
     void Interact()
     {
         clickedInteractive = true;
 
         InteractionEvent t_event = hit.transform.GetComponent<InteractionEvent>();
 
-        if (t_event.GetAppearType() == AppearType.Change)
+        // 오브젝트 클릭
+        if (hit.transform.GetComponent<InteractionType>().isObject)
         {
-            dm.SetAppearObjects(t_event.GetAppearTargets(), t_event.GetDisppearTargets());
+            CallDialogue(t_event);  // 대화 이벤트 호출
+        }
+        
+        // 문 클릭
+        else
+        {
+            CallTransfer();
+        }
+    }
+
+    // 대화 이벤트 호출
+    void CallDialogue(InteractionEvent p_event)
+    {
+        if (p_event.GetAppearType() == AppearType.Change)
+        {
+            dm.SetAppearObjects(p_event.GetAppearTargets(), p_event.GetDisppearTargets());
         }
 
-        dm.ShowDialogue(t_event.GetDialogue()); // 상호작용한 오브젝트의 대사 이벤트를 꺼내온다.
+        dm.ShowDialogue(p_event.GetDialogue()); // 상호작용한 오브젝트의 대사 이벤트를 꺼내온다.
+    }
+
+    // 맵(신) 이동 함수 호출
+    void CallTransfer()
+    {
+        string t_sceneName = hit.transform.GetComponent<InteractionDoor>().GetSceneName();
+        string t_locationName = hit.transform.GetComponent<InteractionDoor>().GetLocationName();
+
+        StartCoroutine(FindObjectOfType<TransferManager>().Transfer(t_sceneName, t_locationName));
     }
 }
