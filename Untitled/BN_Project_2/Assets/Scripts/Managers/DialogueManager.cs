@@ -197,7 +197,18 @@ public class DialogueManager : MonoBehaviour
         dialogues = null;
         isNext = false;
 
-        theInteractionController.SettingUI(true); // 커서, 상태창 보이기
+        // 다음 이벤트가 있으면, UI를 표시하지 않고 clickedInteractive 변수만 false로
+        if (go_nextEvent != null)
+        {
+            InteractionController.clickedInteractive = false;
+        }
+
+        // 다음 이벤트가 없으면, UI를 표시하고 clickedInteractive 변수도 false로
+        else
+        {
+            theInteractionController.SettingUI(true); // 커서, 상태창 보이기
+        }
+
         SettingUI(false);   // 대사창, 이름창 숨기기
 
         // 모든 대화가 끝날 때까지 기다린 후, 다음 이벤트가 있으면 실행
@@ -205,10 +216,8 @@ public class DialogueManager : MonoBehaviour
 
         if (go_nextEvent != null)
         {
-            Debug.Log(go_nextEvent);
             go_nextEvent.SetActive(true);
             go_nextEvent = null;
-            // go_nextEvent.SetActive(false);
         }
     }
 
