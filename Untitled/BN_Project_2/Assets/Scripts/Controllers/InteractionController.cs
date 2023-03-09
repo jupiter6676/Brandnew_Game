@@ -49,7 +49,8 @@ public class InteractionController : MonoBehaviour
 
     void CheckObject()
     {
-        Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
+        // Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         hit = Physics2D.Raycast(pos, Vector2.zero, 0f); // 마우스 위치에서 레이저를 쏘기
         
         Debug.DrawRay(pos, transform.forward, Color.red, 0.3f);
