@@ -23,6 +23,23 @@ public class InteractionController : MonoBehaviour
     [SerializeField] GameObject go_ui_status;  // (임시) 상태창
 
 
+    public static InteractionController Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     // 대사창이 나오면, UI 숨기기 (DialogueManager.cs에서 호출)
     // 대화가 끝나면, UI 보이기
     public void SettingUI(bool p_flag)
@@ -50,14 +67,13 @@ public class InteractionController : MonoBehaviour
     void CheckObject()
     {
         // Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);  // 신 이동 시 메인 카메라를 자동으로 잡아줌.
         hit = Physics2D.Raycast(pos, Vector2.zero, 0f); // 마우스 위치에서 레이저를 쏘기
         
         Debug.DrawRay(pos, transform.forward, Color.red, 0.3f);
 
         if (hit)
         {
-            // Debug.Log(hit.transform.name);
             Contact();
         }
 

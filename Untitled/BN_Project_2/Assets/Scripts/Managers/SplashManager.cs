@@ -31,7 +31,7 @@ public class SplashManager : MonoBehaviour
 
             yield return null;
         }
-
+        
         isFinished = true;  // 페이드아웃 완료
     }
 
