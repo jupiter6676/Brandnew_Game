@@ -8,6 +8,8 @@ public class TransferManager : MonoBehaviour
     SplashManager theSplashManager; // 페이드인/아웃
     InteractionController theIC;    // UI 표시
 
+    public static bool isFinished = true;  // 이동이 완전히 끝났는지
+
     public static TransferManager Instance;
 
     private void Awake()
@@ -32,6 +34,7 @@ public class TransferManager : MonoBehaviour
 
     public IEnumerator Transfer(string p_sceneName, string p_locationName)
     {
+        isFinished = false;
         theIC.SettingUI(false); // UI 숨기기
 
         // 페이드아웃
@@ -52,6 +55,12 @@ public class TransferManager : MonoBehaviour
         StartCoroutine(theSplashManager.FadeIn(false, true));
         yield return new WaitUntil(() => SplashManager.isFinished);
 
-        theIC.SettingUI(true);  // UI 보이기
+        isFinished = true;
+
+        // 0.3초 정도 대기 후
+        // isWaiting이 false면 대기중인 이벤트가 없다는 뜻이므로, 그때 UI를 표시한다.
+        yield return new WaitForSeconds(0.3f);
+        if (!DialogueManager.isWaiting)
+            theIC.SettingUI(true);  // UI 보이기
     }
 }

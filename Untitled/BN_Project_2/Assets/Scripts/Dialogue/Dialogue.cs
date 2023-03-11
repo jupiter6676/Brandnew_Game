@@ -29,8 +29,8 @@ public class Dialogue
     [Header("카메라 타겟팅 대상")]
     public CameraType cameraType;
 
-    [Header("스탠딩 이미지")]
-    public Transform tf_standing;
+    //[Header("스탠딩 이미지")]
+    //public Transform tf_standing;
 
     [Tooltip("캐릭터")]    // 대사를 하는 캐릭터 이름을 inspector 창에 띄우기 위한 툴팁
     public string name;    // 캐릭터 이름

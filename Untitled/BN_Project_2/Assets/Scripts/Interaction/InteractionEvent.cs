@@ -19,7 +19,7 @@ public class InteractionEvent : MonoBehaviour
         for (int i = 0; i < dialogueEvent.dialogues.Length; i++)
         {
             // dialogueEvent에 넣은 Standing Image 오브젝트를 임시 변수에 넣기
-            t_dialogueEvent.dialogues[i].tf_standing = dialogueEvent.dialogues[i].tf_standing;
+            // t_dialogueEvent.dialogues[i].tf_standing = dialogueEvent.dialogues[i].tf_standing;
 
             // dialogueEvent에 넣은 카메라 타입을 임시 변수에 넣기
             t_dialogueEvent.dialogues[i].cameraType = dialogueEvent.dialogues[i].cameraType;
@@ -61,7 +61,8 @@ public class InteractionEvent : MonoBehaviour
     private void Update()
     {
         // 자동 이벤트이고, 데이터 파싱 후 테이블에 모두 저장되면 (오류 방지)
-        if (isAutoEvent && DatabaseManager.isFinish)
+        // + 이동이 모두 끝났다면 (이동을 안하는 경우도 기본값이 true이므로 자동 이벤트가 있으면 내부가 실행됨)
+        if (isAutoEvent && DatabaseManager.isFinish && TransferManager.isFinished)
         {
             DialogueManager.isWaiting = true;   // true → 자동 이벤트 대기
 

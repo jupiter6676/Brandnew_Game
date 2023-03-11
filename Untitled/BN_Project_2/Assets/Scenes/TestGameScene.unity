@@ -1643,13 +1643,11 @@ MonoBehaviour:
     line: {x: 4, y: 5}
     dialogues:
     - cameraType: 4
-      tf_standing: {fileID: 1906925358}
       name: 
       contexts: []
       spriteName: []
       cutsceneName: []
     - cameraType: 0
-      tf_standing: {fileID: 1906925358}
       name: 
       contexts: []
       spriteName: []
@@ -2176,13 +2174,11 @@ MonoBehaviour:
     line: {x: 1, y: 2}
     dialogues:
     - cameraType: 0
-      tf_standing: {fileID: 1906925358}
       name: 
       contexts: []
       spriteName: []
       cutsceneName: []
     - cameraType: 0
-      tf_standing: {fileID: 1906925358}
       name: 
       contexts: []
       spriteName: []
@@ -2250,7 +2246,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444037435}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.072754, y: -0.14410909, z: -9.965531}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2283,6 +2279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0.1
+  target: {fileID: 1906925358}
 --- !u!114 &1444037440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,13 +2557,11 @@ MonoBehaviour:
     line: {x: 3, y: 4}
     dialogues:
     - cameraType: 4
-      tf_standing: {fileID: 1906925358}
       name: 
       contexts: []
       spriteName: []
       cutsceneName: []
     - cameraType: 0
-      tf_standing: {fileID: 1906925358}
       name: 
       contexts: []
       spriteName: []
@@ -2651,7 +2646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1953801731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.8785415, y: -3.3697522, z: 25.269888}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

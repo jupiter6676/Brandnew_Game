@@ -11,11 +11,15 @@ public class DontDestroy : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            Debug.Log("DontDestroyOnLoad");
         }
 
         else
         {
             Destroy(gameObject);
+
+            Debug.Log("Destroy");
         }
     }
 }

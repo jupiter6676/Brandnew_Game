@@ -251,7 +251,8 @@ public class DialogueManager : MonoBehaviour
 
     void ChangeSprite()
     {
-        StartCoroutine(theSpriteManager.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
+        // StartCoroutine(theSpriteManager.SpriteChangeCoroutine(dialogues[dialogueCnt].tf_standing, dialogues[dialogueCnt].spriteName[contextCnt]));
+        StartCoroutine(theSpriteManager.SpriteChangeCoroutine(dialogues[dialogueCnt].spriteName[contextCnt]));
     }
 
     // 텍스트 출력 코루틴
