@@ -10,9 +10,37 @@ public class InteractionEvent : MonoBehaviour
 
     DialogueManager theDM;
 
+    // 이 이벤트를 등장시킬지 말지 결정하는 함수
+    bool CheckEvent()
+    {
+        bool t_flag = true;
+
+        for (int i = 0; i < dialogueEvent.eventTiming.eventConditions.Length; i++)
+        {
+            // 1. 등장 조건과 본 이벤트가 일치하지 않으면, 캐릭터 등장 X
+            // 조건 이벤트가 실행되었는지의 여부 (true, false)
+            // 해당 이벤트를 보아야 등장하는지의 여부 (true, false)
+            if (DatabaseManager.instance.eventFlags[dialogueEvent.eventTiming.eventConditions[i]] != dialogueEvent.eventTiming.conditionFlag)
+            {
+                t_flag = false;
+                break;
+            }
+
+            // 2. 캐릭터 퇴장 조건이 되는 이벤트를 보았다면, 캐릭터 등장 X
+            if (DatabaseManager.instance.eventFlags[dialogueEvent.eventTiming.eventEndNum])
+            {
+                t_flag = false; // 캐릭터 등장 X
+            }
+        }
+
+        return t_flag;
+    }
+
     // DatabaseManager에 저장된 실제 대사 데이터를 꺼내온다.
     public Dialogue[] GetDialogue()
     {
+        DatabaseManager.instance.eventFlags[dialogueEvent.eventTiming.eventNum] = true; // 현재 이벤트의 실행 여부를 true로 설정
+
         DialogueEvent t_dialogueEvent = new DialogueEvent();    // 임시 변수
         t_dialogueEvent.dialogues = DatabaseManager.instance.GetDialogue((int)dialogueEvent.line.x, (int)dialogueEvent.line.y);
 
@@ -56,6 +84,9 @@ public class InteractionEvent : MonoBehaviour
     {
         theDM = FindObjectOfType<DialogueManager>();
         theDM.SetNextEvent(GetNextEvent()); // 다음 이벤트 정보를 저장
+
+        bool t_flag = CheckEvent(); // 이 이벤트(캐릭터)를 등장시킬지
+        gameObject.SetActive(t_flag);
     }
 
     private void Update()

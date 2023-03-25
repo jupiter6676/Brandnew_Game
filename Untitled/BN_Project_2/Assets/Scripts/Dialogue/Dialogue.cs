@@ -46,9 +46,20 @@ public class Dialogue
 }
 
 [System.Serializable]
+public class EventTiming
+{
+    public int eventNum;            // 현재 이벤트의 번호
+    public int[] eventConditions;   // 조건이 되는 이벤트들의 번호 리스트
+    public bool conditionFlag;      // true: eventConditions 이벤트를 봤을 때 등장 / false: 안 봤을 때 등장
+    public int eventEndNum;         // 이 번호의 이벤트를 보면 무조건 퇴장
+}
+
+[System.Serializable]
 public class DialogueEvent
 {
     public string name;     // 대화 이벤트 이름
+    public EventTiming eventTiming;
+
     public Vector2 line;    // x줄부터 y줄까지의 대사를 가져온다.
     public Dialogue[] dialogues;    // 대사를 여러 명이서 하기 때문에 배열 생성
 
