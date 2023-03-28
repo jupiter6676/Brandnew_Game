@@ -10,10 +10,11 @@ public class InteractionEvent : MonoBehaviour
 
     DialogueManager theDM;
 
-    // 이 이벤트를 등장시킬지 말지 결정하는 함수
+    // 이 이벤트(캐릭터)를 등장시킬지 말지 결정하는 함수
+    // 이벤트 종료 후 캐릭터를 퇴장시키는 코드는 Update 함수에 작성
     bool CheckEvent()
     {
-        bool t_flag = true;
+        bool t_flag = true; // true면 등장, false면 등장 X
 
         for (int i = 0; i < dialogueEvent.eventTiming.eventConditions.Length; i++)
         {
@@ -78,7 +79,6 @@ public class InteractionEvent : MonoBehaviour
     {
         return dialogueEvent.go_nextEvent;
     }
-
 
     private void Start()
     {

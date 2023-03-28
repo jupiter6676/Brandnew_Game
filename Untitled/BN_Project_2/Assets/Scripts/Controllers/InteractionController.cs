@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractionController : MonoBehaviour
 {
-    [SerializeField] Camera cam;    // 우리가 보고 있는 카메라
+    // [SerializeField] Camera cam;    // 우리가 보고 있는 카메라
     RaycastHit2D hit; // 레이저를 쏴서 맞춘 오브젝트 정보를 저장
 
     [SerializeField] GameObject go_normalCursor;       // 일반 커서

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CutsceneManager : MonoBehaviour
 {
-    public static bool isFinished = false;  // ÄÆ½ÅÀÌ ´Ù ºÒ·¯¿ÍÁ³´ÂÁö
+    public static bool isFinished = false;  // ï¿½Æ½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     SplashManager theSplashManager;
 
@@ -19,16 +19,16 @@ public class CutsceneManager : MonoBehaviour
 
     public bool CheckCutscene()
     {
-        return img_cutscene.gameObject.activeSelf;  // ÇöÀç ÀÌ °´Ã¼°¡ È°¼ºÈ­ »óÅÂÀÎÁö ¹ÝÈ¯
+        return img_cutscene.gameObject.activeSelf;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
     }
 
     public IEnumerator CutsceneCoroutine(string p_cutsceneName, bool p_isShow)
     {
         SplashManager.isFinished = false;
-        StartCoroutine(theSplashManager.FadeOut(true, false));      // ÇÏ¾é°í ºü¸£°Ô
-        yield return new WaitUntil(() => SplashManager.isFinished); // ÆäÀÌµå¾Æ¿ô ³¡³¯ ¶§±îÁö ´ë±â
+        StartCoroutine(theSplashManager.FadeOut(true, false));      // ï¿½Ï¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        yield return new WaitUntil(() => SplashManager.isFinished); // ï¿½ï¿½ï¿½Ìµï¿½Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-        // ÄÆ½ÅÀ» º¸¿©ÁØ´Ù.
+        // ï¿½Æ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
         if (p_isShow)
         {
             p_cutsceneName = p_cutsceneName.Trim();
@@ -41,18 +41,18 @@ public class CutsceneManager : MonoBehaviour
             }
         }
 
-        // ÄÆ¾ÀÀ» º¸¿©ÁÖÁö ¾Ê´Â´Ù.
+        // ï¿½Æ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Â´ï¿½.
         else
         {
             img_cutscene.gameObject.SetActive(false);
         }
 
         SplashManager.isFinished = false;
-        StartCoroutine(theSplashManager.FadeIn(true, false));       // ÇÏ¾é°í ºü¸£°Ô
-        yield return new WaitUntil(() => SplashManager.isFinished); // ÆäÀÌµåÀÎ ³¡³¯ ¶§±îÁö ´ë±â
+        StartCoroutine(theSplashManager.FadeIn(true, false));       // ï¿½Ï¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        yield return new WaitUntil(() => SplashManager.isFinished); // ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-        yield return new WaitForSeconds(0.5f);  // ÄÆ½Å ³¡³ª°í 0.5ÃÊ ÈÄ ÅØ½ºÆ® Ãâ·Â
+        yield return new WaitForSeconds(0.5f);  // ï¿½Æ½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0.5ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½
 
-        isFinished = true;  // ÄÆ½Å ºÒ·¯¿À±â ³¡
+        isFinished = true;  // ï¿½Æ½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
     }
 }
