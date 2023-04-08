@@ -35,8 +35,8 @@ public class DialogueManager : MonoBehaviour
 
 
     // 이벤트가 끝나면 등장/퇴장시킬 오브젝트들
-    GameObject[] go_appearTargets;
-    GameObject[] go_disappearTargets;
+    public GameObject[] go_appearTargets;
+    public GameObject[] go_disappearTargets;
     byte appearTypeNum; // 0: 아무 변화 X, 1: 변화
     const byte NONE = 0, CHANGE = 1;
 
