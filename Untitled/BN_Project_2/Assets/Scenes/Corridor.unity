@@ -411,8 +411,8 @@ MonoBehaviour:
     name: "\uBCF5\uB3C4 \uC774\uB3D9 \uD6C4 \uC790\uB3D9 \uC774\uBCA4\uD2B8"
     eventTiming:
       eventNum: 2
-      eventConditions: 02000000
-      conditionFlag: 0
+      eventConditions: 01000000
+      conditionFlag: 1
       eventEndNum: 2
     line: {x: 9, y: 9}
     dialogues:
@@ -674,7 +674,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11685598, y: 0}
+  m_Offset: {x: -0.018724203, y: -0.04417598}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -685,7 +685,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.3991005, y: 10.8}
+  m_Size: {x: 0.38242513, y: 0.26318932}
   m_EdgeRadius: 0
 --- !u!212 &695446715
 SpriteRenderer:
