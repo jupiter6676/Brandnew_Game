@@ -1707,6 +1707,8 @@ MonoBehaviour:
       contexts: []
       spriteName: []
       cutsceneName: []
+    lineAfter: {x: 0, y: 0}
+    dialoguesAfter: []
     appearType: 1
     go_appearTargets: []
     go_disappearTargets:
@@ -2302,6 +2304,8 @@ MonoBehaviour:
       contexts: []
       spriteName: []
       cutsceneName: []
+    lineAfter: {x: 0, y: 0}
+    dialoguesAfter: []
     appearType: 1
     go_appearTargets:
     - {fileID: 1274621972}
@@ -2704,6 +2708,8 @@ MonoBehaviour:
       contexts: []
       spriteName: []
       cutsceneName: []
+    lineAfter: {x: 0, y: 0}
+    dialoguesAfter: []
     appearType: 1
     go_appearTargets: []
     go_disappearTargets:

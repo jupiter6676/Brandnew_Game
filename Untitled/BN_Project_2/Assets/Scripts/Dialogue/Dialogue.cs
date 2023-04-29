@@ -60,8 +60,14 @@ public class DialogueEvent
     public string name;     // 대화 이벤트 이름
     public EventTiming eventTiming;
 
+    // 상호작용 전 대사
     public Vector2 line;    // x줄부터 y줄까지의 대사를 가져온다.
     public Dialogue[] dialogues;    // 대사를 여러 명이서 하기 때문에 배열 생성
+
+    // 상호작용 후 달라진 대사
+    [Space]
+    public Vector2 lineAfter;
+    public Dialogue[] dialoguesAfter;
 
     [Space]
     public AppearType appearType;

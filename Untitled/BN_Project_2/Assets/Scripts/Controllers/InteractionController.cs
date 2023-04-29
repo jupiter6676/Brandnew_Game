@@ -174,9 +174,13 @@ public class InteractionController : MonoBehaviour
     // 대화 이벤트 호출
     void CallDialogue(InteractionEvent p_event)
     {
-        if (p_event.GetAppearType() == AppearType.Change)
+        // 이벤트를 처음 보았을 때만 오브젝트 등장 & 퇴장
+        if (!DatabaseManager.instance.eventFlags[p_event.GetEventNum()])
         {
-            dm.SetAppearObjects(p_event.GetAppearTargets(), p_event.GetDisppearTargets());
+            if (p_event.GetAppearType() == AppearType.Change)
+            {
+                dm.SetAppearObjects(p_event.GetAppearTargets(), p_event.GetDisppearTargets());
+            }
         }
 
         dm.ShowDialogue(p_event.GetDialogue()); // 상호작용한 오브젝트의 대사 이벤트를 꺼내온다.
