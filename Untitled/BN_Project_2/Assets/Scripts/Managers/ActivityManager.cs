@@ -16,12 +16,12 @@ public class ActivityManager : MonoBehaviour
         SceneManager.sceneLoaded += LoadSceneEvent; // 이벤트 등록
     }
 
-    // 신이 바뀔 때마다 호출
+    // 신이 바뀔 때마다 호출 (활성화 상태 설정)
     private void LoadSceneEvent(Scene scene, LoadSceneMode mode)
     {
         if (activityDict.Count > 0)
         {
-            GameObject parent = GameObject.Find("Objects");     // Objects 하위에 상호작용 오브젝트 두기 (in Hierachy)
+            GameObject parent = GameObject.Find("Objects"); // Objects 하위에 상호작용 오브젝트 두기 (in Hierachy)
             
             foreach (KeyValuePair<string, bool> dict in activityDict)
             {
@@ -30,7 +30,6 @@ public class ActivityManager : MonoBehaviour
                 if (child != null)
                 {
                     GameObject go = child.gameObject;
-                    // Debug.Log(go.name);
                     go.SetActive(dict.Value);
                 }
             }
